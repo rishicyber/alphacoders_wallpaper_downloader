@@ -1,13 +1,23 @@
 import requests
-
+from threading import Thread
 import os
 import bs4
+from sys import platform
+
+os_type = platform
+
+
+def download_for_windows(image_link):  # For windows machine
+    print(image_link)
+
+
+def download_for_linux(image_link):  # For linux machine
+    os.system(f"wget {s[6:-2]}")
 
 
 if __name__ == "__main__":
-    link = "https://wall.alphacoders.com/tag/noelle-(genshin-impact)-wallpapers"
-
     link = input("Paste link :: ")
+    link = "https://wall.alphacoders.com/tag/noelle-(genshin-impact)-wallpapers"
     total_pages = int(input("Enter no of pages (Each page contain 30 imaages): "))
 
     page = 1
@@ -40,7 +50,15 @@ if __name__ == "__main__":
             for s in str(elments[0]).split():
                 for ss in s:
                     if s.startswith("href"):
-                        # os.system(f"wget {s[6:-2]}")
                         link_of_photo = s[6:-2]
                         print(link_of_photo)
+                        print(os_type == "win32")
+                        # if os_type == "win32":  # FOR WINDOWS MACHINE
+                        #     new_thread = Thread(
+                        #         target=download_for_windows, args=[link_of_photo]
+                        #     )
+                        # else:  # FOR LINUX MACHINE
+                        #     new_thread = Thread(
+                        #         target=download_for_linux, args=[link_of_photo]
+                        #     )
                     break
