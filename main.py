@@ -53,12 +53,12 @@ if __name__ == "__main__":
                         link_of_photo = s[6:-2]
                         print(link_of_photo)
                         print(os_type == "win32")
-                        # if os_type == "win32":  # FOR WINDOWS MACHINE
-                        #     new_thread = Thread(
-                        #         target=download_for_windows, args=[link_of_photo]
-                        #     )
-                        # else:  # FOR LINUX MACHINE
-                        #     new_thread = Thread(
-                        #         target=download_for_linux, args=[link_of_photo]
-                        #     )
+                        if os_type == "win32":  # FOR WINDOWS MACHINE
+                            new_thread = Thread(
+                                target=download_for_windows, args=[link_of_photo]
+                            )
+                        else:  # FOR LINUX MACHINE
+                            new_thread = Thread(
+                                target=download_for_linux, args=[link_of_photo]
+                            )
                     break
